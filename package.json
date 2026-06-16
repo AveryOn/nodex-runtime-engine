@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "format:md": "prettier --write \"**/*.md\"",
-    "check:md": "prettier --check \"**/*.md\""
+    "check:md": "prettier --check \"**/*.md\"",
+    "tasks:sync": "node scripts/sync-tasks.mjs",
+    "execute": "node scripts/execute-task.mjs",
+    "format": "prettier --write \"**/*.md\""
   },
   "repository": {
     "type": "git",
