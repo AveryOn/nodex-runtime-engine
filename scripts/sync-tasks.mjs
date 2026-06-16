@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const root = process.cwd();
 
@@ -116,8 +117,6 @@ for (const dir of existingResearchDirs) {
   }
 }
 
-console.log("Tasks synchronized.");
-
 const trackerPath = path.join(root, "TRACKER.md");
 
 const normalizeTaskTitle = (taskName) => {
@@ -163,3 +162,10 @@ ${trackerRows.join("\n")}
 `;
 
 fs.writeFileSync(trackerPath, trackerContent);
+
+execFileSync("npx", ["--no-install", "prettier", "--write", "TRACKER.md"], {
+  cwd: root,
+  stdio: "inherit",
+});
+
+console.log("[SUCCESS!] Tasks synchronized!");
