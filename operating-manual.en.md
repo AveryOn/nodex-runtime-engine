@@ -202,3 +202,31 @@ After finishing work on the task, change the status in `TRACKER.md`:
 ```
 
 After that, the task is considered complete and remains in the registry for further audit and review.
+
+---
+
+## To mark a task as completed, run:
+
+```bash
+npm run tasks:complete -- 001
+```
+
+Where `001` is the task ID.
+
+The command does the following:
+
+1. Finds the task in `TRACKER.md` by ID.
+2. Changes the task status to `[x]`.
+3. Formats `TRACKER.md` with Prettier.
+
+Example:
+
+```md
+| 001 | [ ] | event loop profiling | ./implements/001_event_loop_profiling | ./research/001_event_loop_profiling |
+```
+
+After running the command:
+
+```md
+| 001 | [x] | event loop profiling | ./implements/001_event_loop_profiling | ./research/001_event_loop_profiling |
+```
