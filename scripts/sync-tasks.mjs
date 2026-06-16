@@ -151,7 +151,7 @@ const trackerRows = tasks.map((taskName) => {
   const status = existingStatuses.get(taskId) ?? "[ ]";
   const title = normalizeTaskTitle(taskName);
 
-  return `| ${taskId} | ${status} | ${title} | ./implements/${taskName} | ./research/${taskName} |`;
+  return `| ${taskId} | ${status} | ${title} | [link](./implements/${taskName}) | [link](./research/${taskName}) |`;
 });
 
 const trackerContent = `# Tracker
