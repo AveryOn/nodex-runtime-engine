@@ -117,3 +117,49 @@ for (const dir of existingResearchDirs) {
 }
 
 console.log("Tasks synchronized.");
+
+const trackerPath = path.join(root, "TRACKER.md");
+
+const normalizeTaskTitle = (taskName) => {
+  return taskName.replace(/^\d{3}_/, "").replaceAll("_", " ");
+};
+
+const readExistingStatuses = () => {
+  if (!fs.existsSync(trackerPath)) {
+    return new Map();
+  }
+
+  const content = fs.readFileSync(trackerPath, "utf-8");
+  const lines = content.split("\n");
+
+  const statuses = new Map();
+
+  for (const line of lines) {
+    const match = line.match(/^\|\s*(\d{3})\s*\|\s*(\[[x\s]\])\s*\|/i);
+
+    if (match) {
+      statuses.set(match[1], match[2].toLowerCase() === "[x]" ? "[x]" : "[ ]");
+    }
+  }
+
+  return statuses;
+};
+
+const existingStatuses = readExistingStatuses();
+
+const trackerRows = tasks.map((taskName) => {
+  const taskId = getTaskId(taskName);
+  const status = existingStatuses.get(taskId) ?? "[ ]";
+  const title = normalizeTaskTitle(taskName);
+
+  return `| ${taskId} | ${status} | ${title} | ./implements/${taskName} | ./research/${taskName} |`;
+});
+
+const trackerContent = `# Tracker
+
+| ID | Status | Task | Implementation | Research |
+| --- | --- | --- | --- | --- |
+${trackerRows.join("\n")}
+`;
+
+fs.writeFileSync(trackerPath, trackerContent);
