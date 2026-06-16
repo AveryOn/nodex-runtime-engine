@@ -7,6 +7,7 @@
     "format:md": "prettier --write \"**/*.md\"",
     "check:md": "prettier --check \"**/*.md\"",
     "tasks:sync": "node scripts/sync-tasks.mjs",
+    "tasks:complete": "node scripts/complete-task.mjs",
     "execute": "node scripts/execute-task.mjs",
     "format": "prettier --write \"**/*.md\""
   },
