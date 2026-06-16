@@ -202,3 +202,33 @@ npm run execute -- 001
 ```
 
 После этого задача считается завершенной и остается в реестре для дальнейшего аудита и повторного изучения.
+
+---
+
+## Завершение задачи / Complete Task
+
+Чтобы отметить задачу как выполненную, используется команда:
+
+```bash
+npm run tasks:complete -- 001
+```
+
+Где `001` — идентификатор задачи.
+
+Команда выполняет следующие действия:
+
+1. Находит задачу в `TRACKER.md` по ID.
+2. Меняет статус задачи на `[x]`.
+3. Форматирует `TRACKER.md` через Prettier.
+
+Пример:
+
+```md
+| 001 | [ ] | event loop profiling | ./implements/001_event_loop_profiling | ./research/001_event_loop_profiling |
+```
+
+После выполнения команды:
+
+```md
+| 001 | [x] | event loop profiling | ./implements/001_event_loop_profiling | ./research/001_event_loop_profiling |
+```
