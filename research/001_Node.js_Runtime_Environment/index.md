@@ -1,5 +1,0 @@
-# 001_Node.js_Runtime_Environment
-
-## Research
-
-TODO
